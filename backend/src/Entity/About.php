@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AboutRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AboutRepository;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: AboutRepository::class)]
+#[ApiResource]
 class About
 {
     #[ORM\Id]
