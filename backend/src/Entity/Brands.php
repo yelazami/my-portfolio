@@ -5,20 +5,34 @@ namespace App\Entity;
 use App\Repository\BrandsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BrandsRepository::class)]
+#[Vich\Uploadable]
 class Brands
 {
+    use Timestampable;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?string $imgUrl = null;
 
+    #[Vich\UploadableField(mapping: 'portfolio_images', fileNameProperty: 'imgUrl')]
+    private ?File $imageFile = null;
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
+    #[Assert\Unique]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'brands', targetEntity: Experience::class)]
@@ -42,6 +56,25 @@ class Brands
     public function setImgUrl(?string $imgUrl): self
     {
         $this->imgUrl = $imgUrl;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile = null): self
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->createdAt = new \DateTimeImmutable();
+            $this->updatedAt = new \DateTimeImmutable();
+        }
 
         return $this;
     }
@@ -86,5 +119,10 @@ class Brands
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

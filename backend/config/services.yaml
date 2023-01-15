@@ -4,7 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    portfolio_img: uploads/img
+    
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -20,5 +21,14 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    #LISTENER DOCTRINE#
+    App\Event\DoctrineEvent:
+        tags:
+            -
+                name: 'doctrine.event_listener'
+                event: 'prePersist'
+                priority: 500
+            -
+                name: 'doctrine.event_listener'
+                event: 'preUpdate'
+                priority: 500
