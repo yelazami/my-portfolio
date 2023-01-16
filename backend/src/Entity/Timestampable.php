@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\HasLifecycleCallbacks]
+//#[ORM\HasLifecycleCallbacks]
 trait Timestampable 
 {
     #[ORM\Column]
