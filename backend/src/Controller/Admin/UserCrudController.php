@@ -20,6 +20,7 @@ class UserCrudController extends AbstractCrudController
         return [
             TextField::new('username'),
             ArrayField::new('roles'),
+            TextField::new('token'),
             DateField::new('createdAt', 'crée')->onlyOnIndex(),
             DateField::new('updatedAt', 'mis à jour')->onlyOnIndex(),
         ];

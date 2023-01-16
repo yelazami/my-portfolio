@@ -46,15 +46,30 @@ class AppFixtures extends Fixture
 
     private function userFixtures(ObjectManager $manager)
     {
-        $user = new User();
-        $user->setUsername('yelazami')
-            ->setRoles(['ROLE_ADMIN'])
+        $admin = new User();
+        $admin
+            ->setUsername('yelazami')
+            ->setRoles(['ROLE_ADMIN', 'ROLE_API_USER'])
+            ->setToken(bin2hex(random_bytes(60)))
         ;
 
-        $password = $this->hasher->hashPassword($user, 'pass123');
+        $password = $this->hasher->hashPassword($admin, 'pass123');
+        $admin->setPassword($password);
+
+        $manager->persist($admin);
+
+        $user = new User();
+        $user
+            ->setUsername('yelazami-api')
+            ->setRoles(['ROLE_API_USER'])
+            ->setToken(bin2hex(random_bytes(60)))
+        ;
+
+        $password = $this->hasher->hashPassword($user, 'HesoyaM3690@@');
         $user->setPassword($password);
 
         $manager->persist($user);
+
     }
 
     private function aboutFixtures(ObjectManager $manager)
