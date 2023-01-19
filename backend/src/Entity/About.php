@@ -9,9 +9,10 @@ use ApiPlatform\Metadata\ApiResource;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AboutRepository::class)]
-#[ApiResource]
+#[ApiResource(normalizationContext: ['groups' => ['read']])]
 #[Vich\Uploadable]
 class About
 {
@@ -20,22 +21,26 @@ class About
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Unique]
     #[Assert\NotNull]
+    #[Groups(['read'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
     #[Assert\NotNull]
+    #[Groups(['read'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\NotNull()]
+    #[Groups(['read'])]
     private ?string $imgUrl = null;
 
     #[Vich\UploadableField(mapping: 'portfolio_images', fileNameProperty: 'imgUrl')]

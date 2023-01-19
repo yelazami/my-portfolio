@@ -1,0 +1,66 @@
+version: "3.7"
+
+services:
+
+    nginx:
+      build: docker/nginx
+      restart: on-failure
+      volumes:
+          - ./backend:/var/www/backend:delegated
+          - ./var/logs/nginx/:/var/log/nginx:delegated
+          - ./docker/nginx/backend.conf:/etc/nginx/conf.d/backend.conf:delegated
+          - ./docker/nginx/frontend.conf:/etc/nginx/conf.d/frontend.conf:delegated
+      ports:
+          - "90:80"
+      networks:
+          - monitoring
+
+    backend:
+        build: docker/backend
+        restart: on-failure
+        volumes:
+            - ./backend:/var/www/backend:delegated
+            - ./docker/backend/php.ini:/usr/local/etc/backend/php.ini:ro
+        networks:
+            - monitoring
+        depends_on: 
+            - nginx
+            - db
+
+    db:
+      image: mysql:8.0
+      environment:
+        MYSQL_ROOT_PASSWORD: toor
+        MYSQL_DATABASE: my_portfolio
+        MYSQL_USER: yassine
+        MYSQL_PASSWORD: toor
+      networks:
+        - monitoring
+      ports:
+        - "3306:3306"
+      volumes:
+        - dbdata:/var/lib/mysql
+
+
+    frontend:
+      build: frontend
+      restart: on-failure
+      command: "npm start"
+      depends_on:
+        - backend
+      networks:
+        - monitoring
+      volumes:
+        - ./frontend:/var/www/frontend:delegated
+        - nodemodules:/var/www/frontend/node_modules
+      ports:
+      - "3000:3000"
+
+networks:
+    monitoring:
+        driver: bridge
+
+# volumes
+volumes:
+  nodemodules: {}
+  dbdata:
