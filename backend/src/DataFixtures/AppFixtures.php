@@ -384,9 +384,9 @@ class AppFixtures extends Fixture
         $healtCareMonitoring
             ->setTitle('Plant health care monitoring solution')
             ->setDescription("
-                Using plant sensors retrieving environment information, a global solution was conceived to allow end-users to monitor plant health care.
-                A server developed with Node.js was able to retrieve data sent by the sensors, while a mobile web app was able to request the server to retrieve the information for a specific plant.
-                Notifications were also sent by the application in case of necessary action (humidity, sun exposition...).
+                A solution to monitor plant health care was developed using plant sensors to retrieve environment information. 
+                A Node.js server retrieves the sensor data and a mobile web app allows users to access the information. 
+                Notifications are sent for necessary actions, such as adjusting humidity or sun exposure.
             ")
             ->setImgUrl('work-health-care-monitoring.png')
             ->setCodeLink('settup github')

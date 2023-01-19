@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
 import './About.scss';
-import { urlFor, client, api } from '../../client';
+import { urlFor, api } from '../../client';
 
 const About = () => {
   const [abouts, setAbouts] = useState([]);
@@ -13,13 +13,6 @@ const About = () => {
       .then(response => response.json())
       .catch(error => console.log(error))
       .then(data => setAbouts(data))
-      //.then(data => console.log(data))
-
-    // const query = '*[_type == "abouts"]';
-
-    // client.fetch(query).then((data) => {
-    //   setAbouts(data);
-    // });
   }, []);
 
   return (

@@ -3,7 +3,7 @@ import { AiFillEye, AiFillGithub } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
-import { urlFor, client } from '../../client';
+import { urlFor, api } from '../../client';
 import './Work.scss';
 
 const Work = () => {
@@ -13,12 +13,14 @@ const Work = () => {
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
 
   useEffect(() => {
-    const query = '*[_type == "works"]';
 
-    client.fetch(query).then((data) => {
-      setWorks(data);
-      setFilterWork(data);
-    });
+    api('/works')
+      .then(response => response.json())
+      .then((data) => {
+        setWorks(data)
+        setFilterWork(data)
+      })
+      .catch(error => console.log(error))
   }, []);
 
   const handleWorkFilter = (item) => {
@@ -95,7 +97,7 @@ const Work = () => {
 
             <div className="app__work-content app__flex">
               <h4 className="bold-text">{work.title}</h4>
-              <p className="p-text" style={{ marginTop: 10 }}>{work.description}</p>
+              <p className="p-text" style={{ marginTop: 10 }} dangerouslySetInnerHTML={{__html: work.description}} ></p>
 
               <div className="app__work-tag app__flex">
                 <p className="p-text">{work.tags[0]}</p>

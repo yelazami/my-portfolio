@@ -3,7 +3,7 @@ import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import { motion } from 'framer-motion';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
-import { urlFor, client } from '../../client';
+import { urlFor, api } from '../../client';
 import './Testimonial.scss';
 
 const Testimonial = () => {
@@ -16,16 +16,15 @@ const Testimonial = () => {
   };
 
   useEffect(() => {
-    const query = '*[_type == "testimonials"]';
-    const brandsQuery = '*[_type == "brands"]';
+    api('/testimonials')
+      .then(response => response.json())
+      .then((data) => setTestimonials(data))
+      .catch(error => console.log(error))
 
-    client.fetch(query).then((data) => {
-      setTestimonials(data);
-    });
-
-    client.fetch(brandsQuery).then((data) => {
-      setBrands(data);
-    });
+      api('/brands')
+      .then(response => response.json())
+      .then((data) => setBrands(data))
+      .catch(error => console.log(error))
   }, []);
 
   return (
@@ -33,9 +32,9 @@ const Testimonial = () => {
       {testimonials.length && (
         <>
           <div className="app__testimonial-item app__flex">
-            <img src={urlFor(testimonials[currentIndex]?.imgurl)} alt={testimonials[currentIndex].name} />
+            <img src={urlFor(testimonials[currentIndex]?.imgUrl)} alt={testimonials[currentIndex].name} />
             <div className="app__testimonial-content">
-              <p className="p-text">{testimonials[currentIndex].feedback}</p>
+              <p className="p-text" dangerouslySetInnerHTML={{__html: testimonials[currentIndex].feedback}}></p>
               <div>
                 <h4 className="bold-text">{testimonials[currentIndex].name}</h4>
                 <h5 className="p-text">{testimonials[currentIndex].company}</h5>
@@ -60,7 +59,7 @@ const Testimonial = () => {
           <motion.div
             whileInView={{ opacity: [0, 1] }}
             transition={{ duration: 0.5, type: 'tween' }}
-            key={brand._id}
+            key={brand.id}
           >
             <img src={urlFor(brand.imgUrl)} alt={brand.name} />
           </motion.div>
