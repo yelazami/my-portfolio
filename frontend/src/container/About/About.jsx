@@ -3,17 +3,23 @@ import { motion } from 'framer-motion';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
 import './About.scss';
-import { urlFor, client } from '../../client';
+import { urlFor, client, api } from '../../client';
 
 const About = () => {
   const [abouts, setAbouts] = useState([]);
 
   useEffect(() => {
-    const query = '*[_type == "abouts"]';
+      api('/abouts')
+      .then(response => response.json())
+      .catch(error => console.log(error))
+      .then(data => setAbouts(data))
+      //.then(data => console.log(data))
 
-    client.fetch(query).then((data) => {
-      setAbouts(data);
-    });
+    // const query = '*[_type == "abouts"]';
+
+    // client.fetch(query).then((data) => {
+    //   setAbouts(data);
+    // });
   }, []);
 
   return (
