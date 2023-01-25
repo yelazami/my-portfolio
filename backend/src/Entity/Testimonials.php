@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 use App\Repository\TestimonialsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,7 +15,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TestimonialsRepository::class)]
 #[Vich\Uploadable]
-#[ApiResource()]
+#[ApiResource(operations: [
+    new Get(),
+    new GetCollection(),
+])]
 class Testimonials
 {
     use Timestampable;

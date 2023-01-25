@@ -1,5 +1,14 @@
 # api/config/packages/api_platform.yaml
 api_platform:
+    title: 'Portfolio API'
+    version: 1.0.0
+    enable_swagger: true
+    enable_swagger_ui: true
+    enable_re_doc: true
+    enable_entrypoint: true
+    enable_docs: true
+    enable_profiler: true
     formats:
         jsonld:   ['application/ld+json']
         json:     ['application/json']
+        html:     ['text/html']
