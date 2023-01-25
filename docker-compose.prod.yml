@@ -28,7 +28,7 @@ services:
             - db
 
     db:
-      image: mysql:8.0
+      build: docker/db
       environment:
         MYSQL_ROOT_PASSWORD: e51444b3d1785e
         MYSQL_DATABASE: my_portfolio
