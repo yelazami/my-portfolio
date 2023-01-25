@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
         $admin = new User();
         $admin
             ->setUsername('yelazami')
-            ->setRoles(['ROLE_ADMIN', 'ROLE_API_USER'])
+            ->setRoles(['ROLE_ADMIN'])
             ->setToken(bin2hex(random_bytes(60)))
         ;
 
@@ -61,7 +61,6 @@ class AppFixtures extends Fixture
         $user = new User();
         $user
             ->setUsername('yelazami-api')
-            ->setRoles(['ROLE_API_USER'])
             ->setToken(bin2hex(random_bytes(60)))
         ;
 
@@ -108,6 +107,104 @@ class AppFixtures extends Fixture
 
     private function experienceFixtures(ObjectManager $manager)
     {
+        $smile = new Brands();
+        $smile->setName('Smile')
+            ->setImgUrl('brands-smile.png')
+        ;
+
+        $smileExperience = new Experience();
+        $smileExperience
+            ->setName('CDI: Software Engineer PHP Symfony')
+            ->setPeriod('9 mos')
+            ->setFromTo('May 2022 - Present')
+            ->setCompany('Smile')
+            ->setDescription("
+                <div>Full-stack developer Internal training project for employees | For'me&nbsp;</div><div><strong><em>Stack</em></strong>: PHP 8, Symfony 6, ReactJs, Twilio, RabbitMQ, PostgreSQL. <br><strong><em>Environment</em></strong> : Docker, PhpStorm, Git. <br><strong><em>Methods</em></strong> : daily meetings Scrum, pair programming, code review.&nbsp;</div>
+            ")
+            ->setPlace('Paris, Île-de-France')
+            ->setBrands($smile)
+        ;
+
+        $smile->addExperience($smileExperience);
+
+        $manager->persist($smile);
+        $manager->persist($smileExperience);
+
+        // Rhinos
+        $rhinos = new Brands();
+        $rhinos->setName('Group Rhinos')
+            ->setImgUrl('brands-rhinos.png')
+        ;
+
+        $rhinosExperience = new Experience();
+        $rhinosExperience
+            ->setName('CDI: Back-End Developer PHP Symfony')
+            ->setFromTo('Sep 2020 - May 2022')
+            ->setPeriod('1 yr 9 mos')
+            ->setCompany('Group Rhinos')
+            ->setDescription("
+                <div><strong><em>Projects</em></strong> :&nbsp;</div><ul><li>AdCagnotte Autodistribution (From Scratch)&nbsp;</li><li>Promocash&nbsp;</li><li>Sonepar (Redesign).&nbsp;</li></ul><div><strong><em>Stack</em></strong>: PHP 7 · Symfony 4/5 · Docker · RabbitMQ · Git · API REST · SQL · JavaScript · jQuery.</div>
+            ")
+            ->setPlace('La Rochelle')
+            ->setBrands($rhinos)
+        ;
+
+        $rhinos->addExperience($rhinosExperience);
+
+        $manager->persist($rhinos);
+        $manager->persist($rhinosExperience);
+
+        // Biig
+        $biig = new Brands();
+        $biig->setName('Biig stratégie digital')
+            ->setImgUrl('brands-biig.png')
+        ;
+
+        $biigExperience = new Experience();
+        $biigExperience
+            ->setName('Apprenticeship: Back-End Developer PHP Symfony')
+            ->setFromTo('Sep 2018 - Aug 2020')
+            ->setPeriod('2 yrs')
+            ->setCompany('Biig stratégie digital')
+            ->setDescription('
+                <div><strong><em>Projects</em></strong>:&nbsp;</div><ul><li>Qazle (leads generation &amp; management)&nbsp;</li><li>Formulez&nbsp;</li><li>Sofinco.&nbsp;</li></ul><div><strong><em>Stack</em></strong>: &nbsp;</div><ul><li>Php 7, Framework Symfony (3/4), Doctrine, MySQL/PostgreSQL</li><li>API Platform, API REST</li><li>Unit and functional testing (PhpUnit, PhpSpec, Behat)</li><li>Versioning (Git)</li><li>Issue tracker, Code review, CI (Gitlab)</li><li>Monitoring tool (Sentry, Graylog)</li><li>Docker, ElasticSearch, Redis, RabbitMQ, Sonata</li><li>Design Pattern, DDD, SOLID principles, KISS, DRY</li><li>IDE : PhpStorm</li><li>Method : mostly Agile</li></ul>
+            ')
+            ->setPlace('Niort')
+            ->setBrands($biig)
+        ;
+
+        $biig->addExperience($biigExperience);
+
+        $manager->persist($biig);
+        $manager->persist($biigExperience);
+
+
+        // Abbaye de Fontdouce
+        $abbayeFontdouce = new Brands();
+        $abbayeFontdouce->setName('Abbaye de Fontdouce')
+            ->setImgUrl('brands-abbayeFontdouce.png')
+        ;
+
+        $abbayeFontdouceExperience = new Experience();
+        $abbayeFontdouceExperience
+            ->setName('Internship: Mobile Devoloper')
+            ->setFromTo('Apr 2018 - Jun 2018')
+            ->setPeriod('3 mos')
+            ->setCompany('Abbaye de Fontdouce')
+            ->setDescription('
+                <div>Multi-platform mobile application: <strong>Game of Stones</strong>:</div><ul><li>Developing an adventure game application with the Ionic 3 Framework.</li><li>Connect the application with a "REST" API server created with NodeJS.</li><li>Build a Back-office to manage the application.&nbsp;</li></ul>
+            ')
+            ->setPlace('Saint-Bris-des-Bois')
+            ->setBrands($abbayeFontdouce)
+        ;
+
+        $abbayeFontdouce->addExperience($abbayeFontdouceExperience);
+
+        $manager->persist($abbayeFontdouce);
+        $manager->persist($abbayeFontdouceExperience);
+
+        // FST
+
         $fst = new Brands();
         $fst->setName('FST-Fès')
             ->setImgUrl('brands-fst.png')
@@ -116,7 +213,8 @@ class AppFixtures extends Fixture
         $fstExperience = new Experience();
         $fstExperience
             ->setName('Internship: Full-stack Developer')
-            ->setPeriod('Apr 2016 - Jun 2016 · 3 mos')
+            ->setFromTo('Apr 2016 - Jun 2016')
+            ->setPeriod('3 mos')
             ->setCompany('FST-Fès')
             ->setDescription('
                 Update the FST website with the LARAVEL 4.2 framework by adding 
@@ -131,159 +229,6 @@ class AppFixtures extends Fixture
 
         $manager->persist($fst);
         $manager->persist($fstExperience);
-
-        //
-        $abbayeFontdouce = new Brands();
-        $abbayeFontdouce->setName('Abbaye de Fontdouce')
-            ->setImgUrl('brands-abbayeFontdouce.png')
-        ;
-
-        $abbayeFontdouceExperience = new Experience();
-        $abbayeFontdouceExperience
-            ->setName('Internship: Mobile Devoloper')
-            ->setPeriod('Apr 2018 - Jun 2018 · 3 mos')
-            ->setCompany('Abbaye de Fontdouce')
-            ->setDescription('
-                Multi-platform mobile application: Game of Stones:
-                -Developing an adventure game application with the Ionic 3 Framework.
-                -Connect the application with a "REST" API server created with NodeJS.
-                -Build a Back-office to manage the application.
-            ')
-            ->setPlace('Saint-Bris-des-Bois')
-            ->setBrands($abbayeFontdouce)
-        ;
-
-        $abbayeFontdouce->addExperience($abbayeFontdouceExperience);
-
-        $manager->persist($abbayeFontdouce);
-        $manager->persist($abbayeFontdouceExperience);
-
-        
-        //
-        $biig = new Brands();
-        $biig->setName('Biig stratégie digital')
-            ->setImgUrl('brands-biig.png')
-        ;
-
-        $biigExperience = new Experience();
-        $biigExperience
-            ->setName('Apprenticeship: Back-End Developer PHP Symfony')
-            ->setPeriod('Sep 2018 - Aug 2020 · 2 yrs')
-            ->setCompany('Biig stratégie digital')
-            ->setDescription('
-                Projects: Qazle (leads generation & management) | Formulez | Sofinco.
-                As a back-end developer at BiiG, I have been responsible for implementing and developing Php/Symfony applications (3/4) as well as maintaining existing applications.
-
-                I work mainly in agile teams. I participate in the breakdown of customer requests into technical tasks as well as in the costing and estimation in collaboration with the Product Owners.
-
-                Furthermore, I create unit and functional tests for each developed task, which are automatically run every time the code is updated on Gitlab using continuous integration systems (Gitlab ci).
-
-                I place a high value on well-written code. I am responsible for enforcing coding standards and best practices in the back-end development team.
-
-                Finally , I organize from an occasional time insights (internal trainings) on interesting or current topics and technologies in order to increase the skills of junior developers and to deepen the knowledge of more experienced developers.
-
-                In summary:
-
-                - Php 7, Framework Symfony (3/4), Doctrine, MySQL/PostgreSQL
-                - API Platform, API REST
-                - Unit and functional testing (PhpUnit, PhpSpec, Behat)
-                - Versioning (Git)
-                - Issue tracker, Code review, CI (Gitlab)
-                - Monitoring tool (Sentry, Graylog)
-                - Docker, ElasticSearch, Redis, RabbitMQ, Sonata
-                - Design Pattern, DDD, SOLID principles, KISS, DRY
-                - IDE : PhpStorm
-                - Method : mostly Agile
-            ')
-            ->setPlace('Niort')
-            ->setBrands($biig)
-        ;
-
-        $biig->addExperience($biigExperience);
-
-        $manager->persist($biig);
-        $manager->persist($biigExperience);
-
-        //
-        $rhinos = new Brands();
-        $rhinos->setName('Group Rhinos')
-            ->setImgUrl('brands-rhinos.png')
-        ;
-
-        $rhinosExperience = new Experience();
-        $rhinosExperience
-            ->setName('CDI: Back-End Developer PHP Symfony')
-            ->setPeriod('Sep 2020 - May 2022 · 1 yr 9 mos')
-            ->setCompany('Group Rhinos')
-            ->setDescription("
-                    Projects : AdCagnotte Autodistribution (From Scratch) | Promocash | Sonepar (Redesign).
-
-                    Missions I carried out :
-                    
-                    ➖ Conducting analysis and design of clients' business needs in collaboration with the project manager and clients.
-                    ➖ Decision-making on technical choices (relevance on feasibility according to needs)
-                    ➖ Participation in various workshops (Sprint planning, review, daily).
-                    ➖ Configuration of the development environment (initialize the project under docker)
-                    ➖ Setting up continuous integration tests using gitlab-CI.
-                    ➖ Configuring docker to set up a staging environment with recipes for the project manager and PO, and using gitlab CI to automatically launch it.
-                    ➖ Management of pre-production and production environments.
-                    ➖ Building applications with the Symfony PHP framework (v4, v5)
-                    ➖ Modeling and design (MCD, Class diagram, use cases ...).
-                    ➖ Designing APIs using API Platform (REST).
-                    ➖ Writing of functional and unit tests (Behat, PhpUnit).
-                    ➖ Code validation via regular code reviews.
-                    ➖ Maintaining a close relationship with the front-end team and customers who consume the API.
-                    ➖ Maintaining applications for various projects.
-                    ➖ Planning and launching marketing campaigns.
-                    ➖ Retrieving data from the MariaDB SQL database for marketing teams to use in their analysis and statistics.
-            ")
-            ->setPlace('La Rochelle')
-            ->setBrands($rhinos)
-        ;
-
-        $rhinos->addExperience($rhinosExperience);
-
-        $manager->persist($rhinos);
-        $manager->persist($rhinosExperience);
-
-        //
-        $smile = new Brands();
-        $smile->setName('Smile')
-            ->setImgUrl('brands-smile.png')
-        ;
-
-        $smileExperience = new Experience();
-        $smileExperience
-            ->setName('CDI: Software Engineer PHP Symfony')
-            ->setPeriod('May 2022 - Present · 9 mos')
-            ->setCompany('Smile')
-            ->setDescription("
-                Full-stack developer
-                Internal training project for employees | For'me
-                
-                ➖ Development and design of member management tools.
-                ➖ I work on the maintenance and the contribution of new functionalities to the core of the tool in 
-                collaboration with front-end developers. I also work independently or in pairs on improving the APIs
-                used. 
-                ➖ Participation in costing workshops.
-                ➖ Configuration of continuous integration tests via gitlab-CI.
-                ➖ Configuration of the staging environment with docker.
-                ➖ I place great importance on well-done code. I'm in charge of coding standards and best practices in 
-                the dev back office. I do daily code reviews and I am very open to discussion, I enjoy discussing
-                Design Patterns, SOLID, DDD, Clean Code, etc.
-                
-                ➖ Stack: Php 8, Symfony 6, Javascript, ReactJs, Twilio, RabbitMQ, PostgreSQL.
-                ➖ Environment : Docker, PhpStorm, Git.
-                ➖ Methods : daily meetings Scrum, pair programming, code review.
-            ")
-            ->setPlace('Paris, Île-de-France, France')
-            ->setBrands($smile)
-        ;
-
-        $smile->addExperience($smileExperience);
-
-        $manager->persist($smile);
-        $manager->persist($smileExperience);
     }
 
     private function skillFixtures(ObjectManager $manager)
@@ -369,13 +314,12 @@ class AppFixtures extends Fixture
         $geoluciole
             ->setTitle('Géoluciole mobile app')
             ->setDescription("
-                This final year project as part of my master's degree was developed with 8 other students.
-                The mobile app aims to geolocalise visitors of La Rochelle as part of a research project conducted by a PhD student, to later determine places of interest.
-                An Android and an iOS native applications were developed while introducing gamification aspects to entice visitors to use the application without biasing its behaviour.
-            ")
+                The mobile app aims to geolocalise visitors of La Rochelle,
+                to later determine places of interest. 
+                The app, available on both Android and iOS, uses gamification elements to encourage visitors to use it without influencing their behavior.            ")
             ->setImgUrl('work-geoluciole.png')
             ->setCodeLink('settup github')
-            ->setTags(['Swift', 'Android', 'Java'])
+            ->setTags(['Swift', 'Android', 'Java', 'Mobile App'])
         ;
 
         $manager->persist($geoluciole);
@@ -384,13 +328,13 @@ class AppFixtures extends Fixture
         $healtCareMonitoring
             ->setTitle('Plant health care monitoring solution')
             ->setDescription("
-                A solution to monitor plant health care was developed using plant sensors to retrieve environment information. 
-                A Node.js server retrieves the sensor data and a mobile web app allows users to access the information. 
-                Notifications are sent for necessary actions, such as adjusting humidity or sun exposure.
+            A solotion for monitoring plant health by using sensors placed on plants to gather environmental data,
+            which is then retrieved by a Node.js server and made accessible to users via a mobile web app 
+            with notifications sent for necessary actions such as adjusting humidity or sun exposure.
             ")
             ->setImgUrl('work-health-care-monitoring.png')
             ->setCodeLink('settup github')
-            ->setTags(['Node JS', 'IoT', 'Cordova'])
+            ->setTags(['Node JS', 'IoT', 'Cordova', 'Mobile App'])
         ;
 
         $manager->persist($healtCareMonitoring);

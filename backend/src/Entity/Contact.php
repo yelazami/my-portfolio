@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Post;
 use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +13,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
-#[ApiResource()]
+#[ApiResource(operations: [
+    new Get(),
+    new GetCollection(),
+    new Post()
+])]
 class Contact
 {
     use Timestampable;
@@ -32,6 +39,7 @@ class Contact
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?string $message = null;
 
     public function getId(): ?int

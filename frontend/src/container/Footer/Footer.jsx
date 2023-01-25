@@ -23,23 +23,23 @@ const Footer = () => {
     setLoading(true);
 
     const contact = {
-      _type: 'contact',
       name: formData.username,
       email: formData.email,
       message: formData.message,
     };
 
-    // client.create(contact)
-    //   .then(() => {
-    //     setLoading(false);
-    //     setIsFormSubmitted(true);
-    //   })
-    //   .catch((err) => console.log(err));
+    api('/contacts', 'post', contact)
+      .then(response => {
+        console.log(response)
+        setLoading(false);
+        setIsFormSubmitted(true);
+      })
+      .catch(error => console.log(error))
   };
 
   return (
     <>
-      <h2 className="head-text">Take a coffee & chat with me</h2>
+      <h2 className="head-text">Take a <span>coffee</span> & chat with <span>me</span></h2>
 
       <div className="app__footer-cards">
         <div className="app__footer-card ">

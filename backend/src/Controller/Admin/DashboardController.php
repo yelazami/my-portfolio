@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Controller\Admin\ExperienceCrudController;
 use App\Controller\Admin\TestimonialsCrudController;
+use App\Entity\Contact;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -52,7 +53,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Users', 'fas fa-user-shield', User::class);
-        yield MenuItem::linkToCrud('About Section', 'fas fa-address-card', About::class)
+        yield MenuItem::linkToCrud('About', 'fas fa-address-card', About::class)
             ->setController(AboutCrudController::class);
         yield MenuItem::linkToCrud('Work', 'fas fa-building', Work::class)
             ->setController(WorkCrudController::class);
@@ -64,5 +65,7 @@ class DashboardController extends AbstractDashboardController
             ->setController(BrandsCrudController::class);
         yield MenuItem::linkToCrud('Testimonials', 'fab fa-angellist', Testimonials::class)
             ->setController(TestimonialsCrudController::class);
+        yield MenuItem::linkToCrud('Contacts', 'fas fa-address-book', Contact::class)
+            ->setController(ContactCrudController::class);
     }
 }

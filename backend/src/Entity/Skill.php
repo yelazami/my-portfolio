@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 use App\Repository\SkillRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploadableField;
@@ -13,7 +15,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SkillRepository::class)]
 #[Vich\Uploadable]
-#[ApiResource()]
+#[ApiResource(operations: [
+    new Get(),
+    new GetCollection(),
+])]
 class Skill
 {
     use Timestampable;

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ExperienceRepository;
@@ -10,7 +12,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: ExperienceRepository::class)]
-#[ApiResource()]
+#[ApiResource(operations: [
+    new Get(),
+    new GetCollection(),
+])]
 class Experience
 {
     use Timestampable;
@@ -23,6 +28,10 @@ class Experience
     #[ORM\Column(length: 100)]
     #[Assert\NotBlank]
     private ?string $period = null;
+
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
+    private ?string $fromTo = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
@@ -124,5 +133,17 @@ class Experience
     public function __toString()
     {
         return $this->name. ' | '. $this->company;
+    }
+
+    public function getFromTo(): ?string
+    {
+        return $this->fromTo;
+    }
+
+    public function setFromTo(string $fromTo): self
+    {
+        $this->fromTo = $fromTo;
+
+        return $this;
     }
 }

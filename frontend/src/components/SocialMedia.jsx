@@ -10,13 +10,8 @@ const SocialMedia = () => (
       </a>
     </div>
     <div>
-      <a href="https://twitter.com" target='_blank'>
+      <a href="https://twitter.com/YassineElAZAMI1" target='_blank'>
         <BsTwitter />
-      </a>
-    </div>
-    <div>
-      <a href="https://www.facebook.com/Mr.YassineL/" target='_blank'>
-        <FaFacebookF />
       </a>
     </div>
     <div>
