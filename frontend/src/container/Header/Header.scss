@@ -58,13 +58,14 @@
     justify-content: flex-end;
     align-items: flex-end;
     flex-direction: column;
+    margin-top: 2rem;
   
     .badge-cmp,
     .tag-cmp {
       padding: 1rem 2rem;
       margin-right: 20%;
       background: var(--white-color);
-      border-radius: 15px;
+      border-radius: 150px;
       flex-direction: row;
       width: auto;
   
@@ -73,12 +74,33 @@
   
     .tag-cmp {
       flex-direction: column;
-      margin-top: 3rem;
+      margin-top: 2rem;
   
       p {
         width: 100%;
         text-transform: uppercase;
         text-align: right;
+      }
+    }
+
+    .edu-cmp {
+      padding: 1rem 2rem;
+      margin-right: 28%;
+      background: var(--white-color);
+      border-radius: 150px;
+      flex-direction:row-reverse;
+      width: auto;
+  
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .edu-cmp {
+      flex-direction:row;
+      margin-top: 2rem;
+  
+      p {
+        width: 100%;
+        text-align:left;
       }
     }
   
@@ -182,7 +204,11 @@
       z-index: 1;
       margin-top: 12%;
     }
-  
+
+    .img-display {
+      display: none;
+    }
+    
     .overlay_circle {
       position: absolute;
       left: 0;
@@ -195,5 +221,10 @@
   
     @media screen and (max-width: 1200px) {
       margin: 2rem 0;
+      margin-left: 2rem;
+      .img-display {
+        display: inline;
+      }
+
     }
   }

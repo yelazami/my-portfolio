@@ -143,7 +143,7 @@ class AppFixtures extends Fixture
             ->setPeriod('1 yr 9 mos')
             ->setCompany('Group Rhinos')
             ->setDescription("
-                <div><strong><em>Projects</em></strong> :&nbsp;</div><ul><li>AdCagnotte Autodistribution (From Scratch)&nbsp;</li><li>Promocash&nbsp;</li><li>Sonepar (Redesign).&nbsp;</li></ul><div><strong><em>Stack</em></strong>: PHP 7 · Symfony 4/5 · Docker · RabbitMQ · Git · API REST · SQL · JavaScript · jQuery.</div>
+                <div><strong><em>Projects</em></strong> :&nbsp;</div><ul><li>AdCagnotte Autodistribution (From Scratch)&nbsp;</li><li>Promocash&nbsp;</li><li>Sonepar (Redesign).&nbsp;</li></ul><div><strong><em>Stack</em></strong>: PHP 7/8 · Symfony 4/5 · LARAVEL 8/9 · Docker · RabbitMQ · Git · API REST · SQL · JavaScript · jQuery.</div>
             ")
             ->setPlace('La Rochelle')
             ->setBrands($rhinos)

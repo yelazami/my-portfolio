@@ -29,17 +29,12 @@ class Brands
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
-    #[Assert\NotNull]
     private ?string $imgUrl = null;
 
     #[Vich\UploadableField(mapping: 'portfolio_images', fileNameProperty: 'imgUrl')]
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\NotNull]
-    #[Assert\Unique]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'brands', targetEntity: Experience::class)]

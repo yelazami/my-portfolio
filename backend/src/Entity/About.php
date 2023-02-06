@@ -43,8 +43,6 @@ class About
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\NotNull()]
     #[Groups(['read'])]
     private ?string $imgUrl = null;
 
