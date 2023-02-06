@@ -38,7 +38,6 @@ class Skill
     private ?string $bgColor = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
     private ?string $icon = null;
 
     #[Vich\UploadableField(mapping: 'portfolio_images', fileNameProperty: 'icon')]

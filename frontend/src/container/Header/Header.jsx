@@ -32,6 +32,15 @@ const Header = () => (
           </div>
         </div>
 
+        <div className="edu-cmp app__flex">
+          <span>📚</span>
+          
+          <div style={{ marginLeft: 20 }}>
+          <a href="https://formations.univ-larochelle.fr/msc-it-programme-software-architect?lang=en" target="_blank"><p className="bold-text">La Rochelle Université</p></a>
+          <p className="p-text">MSc Computer Science SOFTWARE ARCHITECT</p>
+          </div>
+        </div>
+
         <div className="tag-cmp app__flex">
           <p className="p-text">Web Developer</p>
           <p className="p-text">Freelancer</p>
@@ -44,11 +53,11 @@ const Header = () => (
       transition={{ duration: 0.5, delayChildren: 0.5 }}
       className="app__header-img"
     >
-      <img src={images.profile} alt="profile_bg" />
+      <img src={images.profile} alt="profile_bg" className="img-display"/>
       <motion.img
         whileInView={{ scale: [0, 1] }}
         transition={{ duration: 1, ease: 'easeInOut' }}
-        src={images.circle}
+        src={images.profile}
         alt="profile_circle"
         className="overlay_circle"
       />

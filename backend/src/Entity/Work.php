@@ -43,7 +43,6 @@ class Work
     private ?string $codeLink = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
     private ?string $imgUrl = null;
 
     #[Vich\UploadableField(mapping: 'portfolio_images', fileNameProperty: 'imgUrl')]
