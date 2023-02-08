@@ -30,12 +30,14 @@ const Navbar = () => {
         ))}
       </ul>
 
-      <ul className='cv'>
+      {!showResume && 
+        <ul className='cv'>
         <li className="app__flex" key="link-cv">
               <div />
               <a onClick={() => setShowResume(!showResume)}> resume <FaFileDownload /> </a>
         </li>
       </ul>
+      }
       {showResume && 
         <div>
           <ul className='cv'>
