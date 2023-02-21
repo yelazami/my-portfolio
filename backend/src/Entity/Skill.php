@@ -29,9 +29,6 @@ class Skill
     private ?int $id = null;
 
     #[ORM\Column(length: 70)]
-    #[Assert\NotBlank]
-    #[Assert\NotNull]
-    #[Assert\Unique]
     private ?string $name = null;
 
     #[ORM\Column(length: 20, nullable: true)]
