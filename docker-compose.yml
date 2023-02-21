@@ -10,10 +10,15 @@ services:
           - ./var/logs/nginx/:/var/log/nginx:delegated
           - ./docker/nginx/backend.conf:/etc/nginx/conf.d/backend.conf:delegated
           - ./docker/nginx/frontend.conf:/etc/nginx/conf.d/frontend.conf:delegated
+          - ./docker/nginx/yassine-el-azami_com.key:/etc/nginx/cert/yassine-el-azami_com.key
+          - ./docker/nginx/yassine-el-azami_com.crt:/etc/nginx/cert/yassine-el-azami_com.crt
       ports:
           - "90:80"
       networks:
           - monitoring
+      depends_on: 
+        - backend
+        - frontend
 
     backend:
         build: docker/backend
@@ -24,7 +29,6 @@ services:
         networks:
             - monitoring
         depends_on: 
-            - nginx
             - db
 
     db:

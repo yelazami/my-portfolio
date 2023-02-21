@@ -14,6 +14,9 @@ services:
           - "90:80"
       networks:
           - monitoring
+      depends_on: 
+        - backend
+        - frontend
 
     backend:
         build: docker/backend
@@ -24,7 +27,6 @@ services:
         networks:
             - monitoring
         depends_on: 
-            - nginx
             - db
 
     db:
