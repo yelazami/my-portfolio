@@ -19,7 +19,8 @@ const About = () => {
     <>
       {/* <h2 className="head-text">I Know that <span>Good Devoloper</span> <br />means  <span>Good Business</span></h2> */}
 
-      <h4 className="head-text-about">Trapped in a cycle of <span>self-improvement</span> <br /> driven by my thirst for <span>knowledge and expertise</span></h4>
+      {/* <h4 className="head-text-about">Trapped in a cycle of <span>self-improvement</span> <br /> driven by my thirst for <span>knowledge and expertise</span></h4> */}
+      <h4 className="head-text-about">Endless <span>self-improvement</span><br /> thirst for <span>knowledge</span></h4>
       
       <div className="app__profiles">
         {abouts.map((about, index) => (

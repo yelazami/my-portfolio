@@ -15,10 +15,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: WorkRepository::class)]
 #[Vich\Uploadable]
-#[ApiResource(operations: [
-    new Get(),
-    new GetCollection(),
-])]
+#[ApiResource(
+    operations: [
+        new Get(),
+        new GetCollection(),
+    ],
+    order: ['id' => 'desc']
+)]
 class Work
 {
     use Timestampable;
