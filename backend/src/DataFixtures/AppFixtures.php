@@ -53,7 +53,7 @@ class AppFixtures extends Fixture
             ->setToken(bin2hex(random_bytes(60)))
         ;
 
-        $password = $this->hasher->hashPassword($admin, 'pass123');
+        $password = $this->hasher->hashPassword($admin, "JeNeSuisQunHommePrisDansUneBoucle@");
         $admin->setPassword($password);
 
         $manager->persist($admin);
@@ -295,35 +295,6 @@ class AppFixtures extends Fixture
 
     private function workFixtures(ObjectManager $manager)
     {
-        $myPortfolio = new Work();
-        $myPortfolio
-            ->setTitle('My Portfolio')
-            ->setDescription("
-                <private repo: Code on demand>
-                My personal website created from scratch using ReactJS and Symfony. It includes information about my studies, professional experiences, and projects, and goes beyond a traditional resume.
-            ")
-            ->setImgUrl('work-portfolio.png')
-            ->setProjectLink('dont forget to add it here')
-            ->setCodeLink('https://github.com/yelazami/my-portfolio')
-            ->setTags(['PHP', 'Symfony', 'React JS'])
-        ;
-
-        $manager->persist($myPortfolio);
-        
-        $geoluciole = new Work();
-        $geoluciole
-            ->setTitle('Géoluciole mobile app')
-            ->setDescription("
-                The mobile app aims to geolocalise visitors of La Rochelle,
-                to later determine places of interest. 
-                The app, available on both Android and iOS, uses gamification elements to encourage visitors to use it without influencing their behavior.            ")
-            ->setImgUrl('work-geoluciole.png')
-            ->setCodeLink('settup github')
-            ->setTags(['Swift', 'Android', 'Java', 'Mobile App'])
-        ;
-
-        $manager->persist($geoluciole);
-        
         $healtCareMonitoring = new Work();
         $healtCareMonitoring
             ->setTitle('Plant health care monitoring solution')
@@ -338,8 +309,34 @@ class AppFixtures extends Fixture
         ;
 
         $manager->persist($healtCareMonitoring);
+        
+        $myPortfolio = new Work();
+        $myPortfolio
+            ->setTitle('My Portfolio')
+            ->setDescription("
+                <private repo: Code on demand>
+                My personal website created from scratch using ReactJS and Symfony. It includes information about my studies, professional experiences, and projects, and goes beyond a traditional resume.
+            ")
+            ->setImgUrl('work-portfolio.png')
+            ->setProjectLink('dont forget to add it here')
+            ->setCodeLink('https://github.com/yelazami/my-portfolio')
+            ->setTags(['PHP', 'Symfony', 'React JS'])
+        ;
 
+        $manager->persist($myPortfolio);
 
+        $skillTest = new Work();
+        $skillTest
+            ->setTitle('Skill Test App')
+            ->setDescription("
+                In this project, my goal is to showcase my expertise in backend development by summarizing my knowledge about: DDD, Clean Architecture, Test, Symfony, Docker, Messenger ...
+            ")
+            ->setImgUrl('skill-app.jpeg')
+            ->setCodeLink('https://github.com/yelazami/SkillTest')
+            ->setTags(['Symfony', 'PHP', 'DDD', 'CQRS'])
+        ;
+
+        $manager->persist($skillTest);
     }
 
     private function testimonialFixtures(ObjectManager $manager)
@@ -354,14 +351,35 @@ class AppFixtures extends Fixture
 
         $manager->persist($hamza);
 
+        $thomas = new Testimonials();
+        $thomas
+            ->setName('Thomas Brothier | Full Stack Developer / Web Designer')
+            ->setCompany('Sellsy')
+            ->setFeedback('Developer with a bright future! Does not back down from any technical or functional challenge and does not hesitate to maintain communication within a team.')
+            ->setImgUrl('feedback-thomas.png')
+        ;
+
+        $manager->persist($thomas);
+
         $saad = new Testimonials();
         $saad
             ->setName('SAAD EL KHAYAT | Business Analyst')
-            ->setCompany('Capgemini Capgemini')
+            ->setCompany('Capgemini')
             ->setFeedback('His superior organizational skills give him a distinct advantage over others.')
             ->setImgUrl('feedback-saad.png')
         ;
 
         $manager->persist($saad);
+
+        $lounis = new Testimonials();
+
+        $lounis
+            ->setName('Lounis Haddache | Ingénieur Études et Développement')
+            ->setCompany('Dedalus Group')
+            ->setFeedback('Yassine is a proactive person who is really involved in his work, he is good at what he does, professional with a good mood.')
+            ->setImgUrl('feedback-lounis.jpeg')
+        ;
+
+        $manager->persist($lounis);
     }
 }

@@ -28,7 +28,7 @@ class Testimonials
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 70)]
     #[Assert\NotBlank]
     private ?string $name = null;
 
