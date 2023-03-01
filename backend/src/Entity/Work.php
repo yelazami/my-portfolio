@@ -19,9 +19,8 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         new Get(),
         new GetCollection(),
-    ]
-    // ,
-    // order: ['id' => 'desc']
+    ],
+    order: ['id' => 'desc']
 )]
 class Work
 {
