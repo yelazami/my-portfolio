@@ -1,4 +1,5 @@
 # My Protfolio APP
+![MasterHead](https://media.licdn.com/dms/image/C4E22AQHjVnwPhaft_A/feedshare-shrink_2048_1536/0/1677615101609?e=1717027200&v=beta&t=KoY_nFbv2aU_fo01WaebeiccgRxUj5NEJlDXK4jyaqQ)
 
 ## In this project, my goal is to showcase my expertise in backend & frontend development
 
